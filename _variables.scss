@@ -1,0 +1,31 @@
+/// Text Customization ///
+
+// Sidebar text customization
+$subscribers-before: "";
+$subscribers-after: " people in the wrong world line";
+$users-online-before: "";
+$users-online-after: " people hacking to the gate";
+$sidebar-footer: "(✿◠‿◠) ~<3";
+// To change announcement text, use https://www.reddit.com/r/anime/about/edit
+
+/// Colors ///
+
+// Main theme
+$blue-main: #6a9de6;
+$shadow: rgba(0,0,0,0.37);
+$blue-dark: shadow($blue-main, $shadow);
+
+// Nightmode theme
+$nm-blue-main: #445f7e;
+$nm-blue-dark: shadow($nm-blue-main, $shadow);
+
+/// Mixins ///
+
+// TODO: move to own file
+
+// Inline nightmode styles
+@mixin nm {
+	.res-nightmode & {
+		@content;
+	}
+}
