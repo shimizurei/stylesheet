@@ -49,11 +49,6 @@ else:
     stylesheet = compress(stylesheet)
     print("Minified stylesheet.")
 
-# Print the thing because I'm sick of your shit
-print("\n\n=== stylesheet ===")
-print(stylesheet)
-print("=== /stylesheet ===")
-
 # Push the stylesheet to the subreddit
 print("Writing stylesheet to /r/{}".format(sub_name))
 sub = r.subreddit(sub_name)
