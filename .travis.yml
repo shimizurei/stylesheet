@@ -4,14 +4,13 @@ python:
 - '3.5'
 
 # The Sass part is the actual build
-# or might be... eventually...
 install:
 - rvm install 2.4.1
-# - gem install sass
+- gem install sass
 - pip install -r .update/requirements.txt
 
 script:
-- echo "Nothing to do, we're not actually compiling sass"
+- sass main.scss style.css
 
 deploy:
 # Updates on master go to /r/anime
