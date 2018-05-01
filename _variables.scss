@@ -11,7 +11,7 @@ $sidebar-footer: "(✿◠‿◠) ~<3";
 /// Colors ///
 
 // Main theme
-$blue-main: #6a9de6;
+$blue-main: #0094ff;
 $shadow: rgba(0,0,0,0.37);
 $blue-dark: shadow($blue-main, $shadow);
 
@@ -20,7 +20,6 @@ $nm-blue-main: #445f7e;
 $nm-blue-dark: shadow($nm-blue-main, $shadow);
 
 /// Mixins ///
-
 // TODO: move to own file
 
 // Inline nightmode styles
