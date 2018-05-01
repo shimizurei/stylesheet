@@ -40,7 +40,7 @@ with open(os.path.join(os.getcwd(), "style.css"), "r") as stylesheet_file:
 print("Got stylesheet.")
 
 # Strip leading @charset (Reddit doesn't allow it but Sass adds it sometimes)
-stylesheet = re.sub(r"^@charset", "", stylesheet)
+stylesheet = re.sub(r"^@charset.*\n", "", stylesheet)
 
 # Minify if we should
 if skip_minify:
@@ -48,6 +48,11 @@ if skip_minify:
 else:
     stylesheet = compress(stylesheet)
     print("Minified stylesheet.")
+
+# Print the thing because I'm sick of your shit
+print("\n\n=== stylesheet ===")
+print(stylesheet)
+print("=== /stylesheet ===")
 
 # Push the stylesheet to the subreddit
 print("Writing stylesheet to /r/{}".format(sub_name))
