@@ -1,6 +1,6 @@
 # Hi, if you're modifying this file to run yourself you should change the user agent, thanks.
 
-import praw, os, sys
+import praw, os
 from csscompressor import compress
 
 # Read config from environment variables
@@ -12,6 +12,10 @@ try:
     sub_name = sys.argv[1]
 except Exception:
     sub_name = os.environ['REDDIT_SUBREDDIT']
+try:
+    skip_minify = not os.environ['REDDIT_SKIP_MINIFY'].lower() in ['0', 'false']
+except Exception:
+    skip_minify = False
 
 if not client_id or not client_secret:
     raise ValueError("Missing Reddit app credentials. Make sure you set the REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET environment variables in your Travis settings.")
@@ -21,6 +25,7 @@ if not sub_name:
     raise ValueError("Missing target subreddit. Make sure you set the REDDIT_SUBREDDIT environment variable in your Travis settings, or pass a subreddit name as an argument to the script. Note that this sub's theme will be overwritten.")
 
 # Reddit init and login stuff
+# scopes = ["wikiedit", "modconfig"]
 r = praw.Reddit(
     client_id=client_id,
     client_secret=client_secret,
@@ -29,12 +34,15 @@ r = praw.Reddit(
     user_agent="script:geo1088/reddit-stylesheet-sync:v1.0 (written by /u/geo1088; run by /u/{})".format(username))
 print("Logged into Reddit as /u/{}".format(username))
 
-# Read stylesheet and minify it
-stylesheet_file = open(os.path.join(os.getcwd(), "style.css"), "r")
-stylesheet = compress(stylesheet_file.read()) # minify
-# stylesheet = stylesheet_file.read() # don't minify
-stylesheet_file.close()
-print("Got and minified stylesheet.")
+# Read stylesheet and minify it if we need to
+with open(os.path.join(os.getcwd(), "style.css"), "r") as stylesheet_file:
+    stylesheet = stylesheet_file.read()
+print("Got stylesheet.")
+if skip_minify:
+    print("Skipping minification.")
+else:
+    stylesheet = compress(stylesheet)
+    print("Minified stylesheet.")
 
 # Push the stylesheet to the subreddit
 print("Writing stylesheet to /r/{}".format(sub_name))
@@ -48,7 +56,7 @@ except Exception as e:
     print("Ran into an error while uploading stylesheet; aborting.")
     raise e
 
-print("That's a wrap")
+print("That's a wrap!")
 
 # TODO: Get and upload the sidebar
 
