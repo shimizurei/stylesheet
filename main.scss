@@ -142,13 +142,13 @@ html #sr-header-area a.RESShortcutsCurrentSub {
 	margin: 0;
 	display: block;
 	z-index: 99;
-	width: 74px;
-	height: 90px;
+	width: $snoo-width;
+	height: $snoo-height;
 }
 .pagename {
 	position: absolute;
 	bottom: 37px;
-	left: 88px;
+	left: $snoo-width + 15px;
 	display: block;
 	color: #FFF;
 	font-weight: 400;

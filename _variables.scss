@@ -1,4 +1,4 @@
-/// Text Customization ///
+/// Basic Customization ///
 
 // Sidebar text customization
 $subscribers-before: "";
@@ -8,10 +8,15 @@ $users-online-after: " people hacking to the gate";
 $sidebar-footer: "(✿◠‿◠) ~<3";
 // To change announcement text, use https://www.reddit.com/r/anime/about/edit
 
+// Displayed dimensions of the header image (the uploaded image in subreddit
+// settings will be scaled to these dimensions)
+$snoo-width: 74px;
+$snoo-height: 90px;
+
 /// Colors ///
 
 // Main theme
-$blue-main: #0094ff;
+$blue-main: #6a9de6;
 $shadow: rgba(0,0,0,0.37);
 $blue-dark: shadow($blue-main, $shadow);
 
