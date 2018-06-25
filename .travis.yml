@@ -11,6 +11,9 @@ install:
 - pip install -r .update/requirements.txt
 
 script:
+- echo "pip package versions:"
+- pip freeze
+- echo
 - echo "Nothing to do, we're not actually compiling sass"
 
 deploy:
